@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>news</title>
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <link rel="stylesheet" href="./css/reset.min.css">
+    <link rel="stylesheet" href="./css/swiper.min.css">
+    <link rel="stylesheet" href="./css/index.css">
+</head>
+<body>
+<div class="news_head">
+
+    <a href="javascript:;" class="logo_img">
+        <img src="./img/logo.png">
+    </a>
+
+    <div class="scroll">
+        <ul class="news_nav clear">
+            <li class="active">头条</li>
+            <li>视频</li>
+            <li>财经</li>
+            <li>凤凰号</li>
+            <li>凤凰卫视</li>
+            <li>视频</li>
+            <li>财经</li>
+            <li>视频</li>
+            <li>财经</li>
+        </ul>
+    </div>
+
+
+</div>
+<div class="news_body">
+    <div class="swiper-container">
+        <div class="swiper-wrapper">
+            <div class="swiper-slide">1</div>
+            <div class="swiper-slide">2</div>
+            <div class="swiper-slide">3</div>
+        </div>
+        <div class="swiper-pagination"></div>
+    </div>
+    <ul class="list">
+        <li class="doc">
+            <a href="javascript:;">
+                <img src="./img/doc.png">
+                <div class="doc_right">
+                    <h2 class="title">这三年,习近平治国理政思想及成就测试测试测试极限测试极限测试</h2>
+                    <div class="describe clear">
+                        <div class="time">1分钟前</div>
+                        <div class="comment">
+                        <span>
+                            6868 <i class="iconfont icon-pinglun"></i> <span class="special">专题</span>
+                        </span>
+                        </div>
+                    </div>
+                </div>
+            </a>
+        </li>
+        <li class="slide">
+            <a href="javascript:;">
+                <h1 class="title">单行省略号极限测试单行省略号极限测</h1>
+                <div class="atlas clear">
+                    <img src="./img/doc.png">
+                    <img src="./img/doc.png" class="middleImg">
+                    <img src="./img/doc.png">
+                </div>
+                <div class="describe clear">
+                    <div class="time">1分钟前</div>
+                    <div class="comment">
+                        <span>
+                            6868 <i class="iconfont icon-pinglun"></i>
+                        </span>
+                    </div>
+                </div>
+            </a>
+        </li>
+        <li class="phvideo">
+            <a href="javascript:;">
+                <h1 class="title">单行省略号极极极极极极极极极极极极极极极极极极极极极极极限测</h1>
+                <div class="atlas clear">
+                    <img src="./img/doc.png" class="paging">
+                    <div class="play"></div>
+                </div>
+                <div class="describe clear">
+                    <div class="time">1分钟前</div>
+                    <div class="comment">
+                        <span>
+                            6868 <i class="iconfont icon-pinglun"></i>
+                        </span>
+                    </div>
+                </div>
+            </a>
+        </li>
+    </ul>
+
+
+</div>
+
+
+<script src="./js/zepto.min.js"></script>
+<script src="./js/swiper.min.js"></script>
+<script src="./js/ejs.min.js"></script>
+<script src="./js/index.js"></script>
+<script type="text/template" id="focus">
+    <% data.forEach(item=>{ %>
+    <div class="swiper-slide">
+        <a href=<%=item.link.weburl%>>
+            <img src=<%=item.thumbnail%> >
+            <h2><%=item.title%></h2>
+        </a>
+    </div>
+    <% }) %>
+</script>
+<script type="text/template" id="list">
+    <% data.forEach(item=>{ %>
+          <% if(item.type==="topic2"){ %>
+    <li class="doc">
+        <a href=<%=item.link.weburl%>>
+            <img src=<%=item.thumbnail%>>
+            <div class="doc_right">
+                <h2 class="title"><%=item.title%></h2>
+                <div class="describe clear">
+                    <div class="comment">
+                        <span> <%=item.commentsall%> <i class="iconfont icon-pinglun"></i> <span class="special">专题</span>
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </a>
+    </li>
+          <% } else if (item.type==="doc"){ %>
+    <li class="doc">
+        <a href=<%=item.link.weburl%>>
+            <img src=<%=item.thumbnail%>>
+            <div class="doc_right">
+                <h2 class="title"><%=item.title%></h2>
+                <div class="describe clear">
+                    <div class="time"><%=item.source%></div>
+                    <div class="comment">
+                        <span> <%=item.commentsall%> <i class="iconfont icon-pinglun"></i>
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </a>
+    </li>
+          <%} else if (item.type==="slide"){ %>
+    <li class="slide">
+        <a href=<%=item.link.weburl%>>
+            <h1 class="title"><%=item.title%></h1>
+            <div class="atlas clear">
+                <img src=<%=item.style.images[0]%> >
+                <img src=<%=item.style.images[1]%> class="middleImg">
+                <img src=<%=item.style.images[2]%>>
+            </div>
+            <div class="describe clear">
+                <div class="time"><%=item.updateTime%></div>
+                <div class="comment">
+                        <span>
+                            <%=item.commentsall%> <i class="iconfont icon-pinglun"></i>
+                        </span>
+                </div>
+            </div>
+        </a>
+    </li>
+          <% } else if (item.type==="phvideo"){ %>
+    <li class="phvideo">
+        <a href=<%=item.link.weburl%>>
+            <h1 class="title"><%=item.title%></h1>
+            <div class="atlas clear">
+                <img src=<%=item.thumbnail%> class="paging">
+                <div class="play"></div>
+            </div>
+            <div class="describe clear">
+                <div class="time"><%=item.source%></div>
+                <div class="comment">
+                        <span>
+                            <%=item.commentsall%> <i class="iconfont icon-pinglun"></i>
+                        </span>
+                </div>
+            </div>
+        </a>
+    </li>
+          <% } %>
+
+    <% }) %>
+
+</script>
+</body>
+</html>
