@@ -30,25 +30,24 @@
         </ul>
     </div>
 
-
 </div>
-<div class="news_body">
-    <div class="swiper-container">
-        <div class="swiper-wrapper">
-            <div class="swiper-slide">1</div>
-            <div class="swiper-slide">2</div>
-            <div class="swiper-slide">3</div>
-        </div>
-        <div class="swiper-pagination"></div>
-    </div>
-    <ul class="list"></ul>
+<div class="news_body" id="wrapper">
+    <ul>
+        <li>
+            <div class="swiper-container">
+                <div class="swiper-wrapper"></div>
+                <div class="swiper-pagination"></div>
+            </div>
+            <ul class="list"></ul>
+        </li>
+    </ul>
 </div>
 
 
 <script src="./js/zepto.min.js"></script>
 <script src="./js/swiper.min.js"></script>
+<script src="./js/iscroll.js"></script>
 <script src="./js/ejs.min.js"></script>
-<script src="./js/index.js"></script>
 <script type="text/template" id="focus">
     <% data.forEach(item=>{ %>
     <div class="swiper-slide">
@@ -61,7 +60,7 @@
 </script>
 <script type="text/template" id="list">
     <% data.forEach(item=>{ %>
-          <% if(item.type==="topic2"){ %>
+    <% if(item.type==="topic2"){ %>
     <li class="doc">
         <a href=<%=item.link.weburl%>>
             <img src=<%=item.thumbnail%>>
@@ -69,14 +68,15 @@
                 <h2 class="title"><%=item.title%></h2>
                 <div class="describe clear">
                     <div class="comment">
-                        <span> <%=item.commentsall%> <i class="iconfont icon-pinglun"></i> <span class="special">专题</span>
+                        <span> <%=item.commentsall%> <i class="iconfont icon-pinglun"></i> <span
+                                class="special">专题</span>
                         </span>
                     </div>
                 </div>
             </div>
         </a>
     </li>
-          <% } else if (item.type==="doc"){ %>
+    <% } else if (item.type==="doc"){ %>
     <li class="doc">
         <a href=<%=item.link.weburl%>>
             <img src=<%=item.thumbnail%>>
@@ -92,7 +92,7 @@
             </div>
         </a>
     </li>
-          <%} else if (item.type==="slide"){ %>
+    <%} else if (item.type==="slide"){ %>
     <li class="slide">
         <a href=<%=item.link.weburl%>>
             <h1 class="title"><%=item.title%></h1>
@@ -111,7 +111,7 @@
             </div>
         </a>
     </li>
-          <% } else if (item.type==="phvideo"){ %>
+    <% } else if (item.type==="phvideo"){ %>
     <li class="phvideo">
         <a href=<%=item.link.weburl%>>
             <h1 class="title"><%=item.title%></h1>
@@ -129,10 +129,11 @@
             </div>
         </a>
     </li>
-          <% } %>
+    <% } %>
 
     <% }) %>
 
 </script>
+<script src="./js/index.js"></script>
 </body>
 </html>
