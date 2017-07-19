@@ -133,7 +133,6 @@ $(function () {
                 async: true,
                 dataType: 'jsonp',
                 success: function (result) {
-                    console.log(result);
                     news.bindFocus(result);
                     news.bindList(result);
 
@@ -164,15 +163,40 @@ $(function () {
             },0)
         },
         Refresh(){
-            setTimeout(function () {
-                wrapper.refresh();
-            },500)
+            $.ajax({
+                url:'http://api.iclient.ifeng.com/ClientNews?id=SYLB10,SYDT10&gv=5.4.0&os=ios&uid=8jWzrXDWQeep2Nw4AZYzmHxkbneHy4Fj&action=up',
+                async:true,
+                dataType:'jsonp',
+                success:function (data) {
+                    console.log(data);
+                    let strList = "";
+                    let topic = $('#topic').html();
+                    strList += ejs.render(topic, {item: (data[1].item)[0]});
+                    let list = document.getElementById('list').innerHTML;
+                    strList += ejs.render(list, {data: data[0].item});
+                    $('.list').html(strList);
+                    setTimeout(function () {
+                        wrapper.refresh();
+                    },0)
+                }
+            });
+
+
         },
         Load(){
-            console.log(2);
-            setTimeout(function () {
-                wrapper.refresh();
-            },500)
+            $.ajax({
+                url:'http://api.iclient.ifeng.com/ClientNews?id=SYLB10,SYDT10&gv=5.4.0&os=ios&uid=8jWzrXDWQeep2Nw4AZYzmHxkbneHy4Fj&action=down',
+                async:true,
+                dataType:'jsonp',
+                success:function (data) {
+                    let str = document.getElementById('list').innerHTML;
+                     let result = ejs.render(str, {data: data[0].item});
+                    $('.list').append(result);
+                    setTimeout(function () {
+                        wrapper.refresh();
+                    },0)
+                }
+            });
         }
     };
     news.init()

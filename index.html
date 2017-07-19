@@ -134,6 +134,23 @@
     <% }) %>
 
 </script>
+<script type="text/template" id="topic">
+    <li class="doc">
+        <a href=<%=item.link.weburl%>>
+            <img src=<%=item.thumbnail%>>
+            <div class="doc_right">
+                <h2 class="title"><%=item.title%></h2>
+                <div class="describe clear">
+                    <div class="comment">
+                        <span> <%=item.commentsall%> <i class="iconfont icon-pinglun"></i> <span
+                                class="special">专题</span>
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </a>
+    </li>
+</script>
 <script src="./js/index.js"></script>
 </body>
 </html>
