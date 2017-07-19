@@ -3,6 +3,7 @@
 - rem响应式布局 + 流式布局
 - flexbox(新)
 - swiper 插件
+- iscroll 插件
 - ejs 模板引擎
 - 图标字体
 - ajax jsonp 跨域请求
